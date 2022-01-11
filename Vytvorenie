@@ -1,72 +1,83 @@
 CREATE DATABASE Herny_magazin;
 USE Herny_magazin;
-CREATE TABLE `Hry` (
-  `id` int PRIMARY KEY AUTO_INCREMENT,
-  `meno` varchar(255),
-  `zaner` varchar(255),
-  `datum_vydania` datetime,
-  `recenzia` text,
-  `vyvojar` varchar(255),
-  `vydavatel` varchar(255),
-  `podpora_jazykov` text,
-  `cena` float,
-  `systemove_poziadavky` text,
-  `informacie` text
-);
 
-CREATE TABLE `spravca` (
-  `admin_ID` INT PRIMARY KEY,
-  `meno` varchar(255)
-);
-
-CREATE TABLE `Zaregistrovany_uzivatel` (
-  `ID` int PRIMARY KEY,
-  `email` varchar(255),
-  `username` varchar(255),
-  `password` varchar(255)
-);
-
-CREATE TABLE `zaner` (
-  `zaner_id` int PRIMARY KEY,
-  `typ_zanru` varchar(255)
-);
-
-CREATE TABLE `Unban_formular` (
-  `id_ZU` int PRIMARY KEY,
-  `koment` text,
-  `ID_spravcu` int
-);
-
-CREATE TABLE `vyvojar` (
-  `id_vyvojar` int PRIMARY KEY,
-  `vyvojar` varchar(255)
-);
-
-CREATE TABLE `vydavatelstvo` (
-  `id_vydavatelstvo` int PRIMARY KEY,
-  `vydavatelstvo` varchar(255)
-);
-
-CREATE TABLE `Recenzia` (
-  `id_recenzia` int PRIMARY KEY,
-  `id_zaregistrovaneho_u` int,
-  `id_Hry` int,
-  `koment` text
+CREATE TABLE `Hry`(
+`id` int AUTO_INCREMENT,
+PRIMARY KEY(id),
+`meno` VARCHAR(60),
+`zaner` VARCHAR(40),
+`datum_vydania` DATE,
+`recenzia` TEXT,
+`vyvojar` VARCHAR(60),
+`vydavatel` VARCHAR(60),
+`podpora_jazykov` TEXT,
+`cena` FLOAT,
+`systemove_poziadavky` TEXT,
+`informacie`TEXT,
+KEY (zaner),
+KEY(vyvojar),
+KEY(vydavatel),
+KEY(recenzia)
 );
 
 
-ALTER TABLE `zaner` ADD FOREIGN KEY (`zaner_id`) REFERENCES `Hry` (`zaner`);
 
-ALTER TABLE `vydavatelstvo` ADD FOREIGN KEY (`id_vydavatelstvo`) REFERENCES `Hry` (`vydavatel`);
+CREATE TABLE `spravca`(
+`id` INT AUTO_INCREMENT,
+PRIMARY KEY(id),
+`meno` VARCHAR(20)
+);
 
-ALTER TABLE `vyvojar` ADD FOREIGN KEY (`id_vyvojar`) REFERENCES `Hry` (`vyvojar`);
 
-ALTER TABLE `spravca` ADD FOREIGN KEY (`admin_ID`) REFERENCES `Unban_formular` (`ID_spravcu`);
+CREATE TABLE Zaregistrovany_uzivatel (
+id INT PRIMARY KEY AUTO_INCREMENT,
+email VARCHAR(40),
+username VARCHAR(20),
+heslo VARCHAR(40)
+);
 
-ALTER TABLE `Unban_formular` ADD FOREIGN KEY (`id_ZU`) REFERENCES `Zaregistrovany_uzivatel` (`ID`);
+CREATE TABLE `zaner`(
+`ID` INT PRIMARY KEY AUTO_INCREMENT,
+`typ_zanru` VARCHAR(50),
+);
+/*
+CREATE TABLE `Unban_formular`(
+`id`INT AUTO_INCREMENT,
+PRIMARY KEY(id),
+`koment` TEXT,
+);
 
-ALTER TABLE `Zaregistrovany_uzivatel` ADD FOREIGN KEY (`ID`) REFERENCES `Recenzia` (`id_zaregistrovaneho_u`);
 
-ALTER TABLE `Recenzia` ADD FOREIGN KEY (`id_recenzia`) REFERENCES `Hry` (`recenzia`);
+CREATE TABLE `vyvojar`(
+`id` INT AUTO_INCREMENT,
+PRIMARY KEY(id),
+`vyvojar` VARCHAR(60),
+);
 
-ALTER TABLE `Recenzia` ADD FOREIGN KEY (`id_Hry`) REFERENCES `Hry` (`id`);
+
+
+CREATE TABLE `vydavatelstvo`(
+`id` INT AUTO_INCREMENT,
+PRIMARY KEY(id),
+`vydavatelstvo` VARCHAR(60),
+);
+
+
+CREATE TABLE `Recenzie`(
+`id_recenzia`INT AUTO_INCREMENT,
+PRIMARY KEY(id_recenzia),
+`id_zaregistrovaneho_u`INT AUTO_INCREMENT,
+`id_Hry`INT AUTO_INCREMENT,
+`koment` TEXT
+  
+);
+
+
+CREATE TABLE `spravca_info`(
+`id`INT PRIMARY KEY AUTO_INCREMENT,
+`realne_meno` VARCHAR,
+`realne_priezvisko` VARCHAR,
+`Adresa` TEXT,
+`email` VARCHAR,
+);
+
