@@ -1,83 +1,95 @@
-CREATE DATABASE Herny_magazin;
-USE Herny_magazin;
+-- Exportování struktury databáze pro
+CREATE DATABASE IF NOT EXISTS `herny_magazin` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+USE `herny_magazin`;
 
-CREATE TABLE `Hry`(
-`id` int AUTO_INCREMENT,
-PRIMARY KEY(id),
-`meno` VARCHAR(60),
-`zaner` VARCHAR(40),
-`datum_vydania` DATE,
-`recenzia` TEXT,
-`vyvojar` VARCHAR(60),
-`vydavatel` VARCHAR(60),
-`podpora_jazykov` TEXT,
-`cena` FLOAT,
-`systemove_poziadavky` TEXT,
-`informacie`TEXT,
-KEY (zaner),
-KEY(vyvojar),
-KEY(vydavatel),
-KEY(recenzia)
-);
+-- Exportování struktury pro tabulka herny_magazin.hry
+CREATE TABLE IF NOT EXISTS `hry` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `meno` varchar(255) DEFAULT NULL,
+  `zaner` varchar(255) DEFAULT NULL,
+  `datum_vydania` datetime DEFAULT NULL,
+  `recenzia` text DEFAULT NULL,
+  `vyvojar` varchar(255) DEFAULT NULL,
+  `vydavatel` varchar(255) DEFAULT NULL,
+  `podpora_jazykov` text DEFAULT NULL,
+  `cena` float DEFAULT NULL,
+  `systemove_poziadavky` text DEFAULT NULL,
+  `informacie` text DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 
+-- Export dat nebyl vybrán.
 
+-- Exportování struktury pro tabulka herny_magazin.recenzia
+CREATE TABLE IF NOT EXISTS `recenzia` (
+  `id_recenzia` int(11) NOT NULL AUTO_INCREMENT,
+  `id_zaregistrovaneho_u` int(11) DEFAULT NULL,
+  `id_Hry` int(11) DEFAULT NULL,
+  `koment` text DEFAULT NULL,
+  PRIMARY KEY (`id_recenzia`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE `spravca`(
-`id` INT AUTO_INCREMENT,
-PRIMARY KEY(id),
-`meno` VARCHAR(20)
-);
+-- Export dat nebyl vybrán.
 
+-- Exportování struktury pro tabulka herny_magazin.spravca
+CREATE TABLE IF NOT EXISTS `spravca` (
+  `admin_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `meno` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`admin_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE Zaregistrovany_uzivatel (
-id INT PRIMARY KEY AUTO_INCREMENT,
-email VARCHAR(40),
-username VARCHAR(20),
-heslo VARCHAR(40)
-);
+-- Export dat nebyl vybrán.
 
-CREATE TABLE `zaner`(
-`ID` INT PRIMARY KEY AUTO_INCREMENT,
-`typ_zanru` VARCHAR(50),
-);
-/*
-CREATE TABLE `Unban_formular`(
-`id`INT AUTO_INCREMENT,
-PRIMARY KEY(id),
-`koment` TEXT,
-);
+-- Exportování struktury pro tabulka herny_magazin.unban_formular
+CREATE TABLE IF NOT EXISTS `unban_formular` (
+  `id_ZU` int(11) NOT NULL AUTO_INCREMENT,
+  `koment` text DEFAULT NULL,
+  `ID_spravcu` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_ZU`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
+-- Export dat nebyl vybrán.
 
-CREATE TABLE `vyvojar`(
-`id` INT AUTO_INCREMENT,
-PRIMARY KEY(id),
-`vyvojar` VARCHAR(60),
-);
+-- Exportování struktury pro tabulka herny_magazin.vydavatelstvo
+CREATE TABLE IF NOT EXISTS `vydavatelstvo` (
+  `id_vydavatelstvo` int(11) NOT NULL,
+  `vydavatelstvo` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id_vydavatelstvo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- Export dat nebyl vybrán.
 
+-- Exportování struktury pro tabulka herny_magazin.vyvojar
+CREATE TABLE IF NOT EXISTS `vyvojar` (
+  `id_vyvojar` int(11) NOT NULL,
+  `vyvojar` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id_vyvojar`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE `vydavatelstvo`(
-`id` INT AUTO_INCREMENT,
-PRIMARY KEY(id),
-`vydavatelstvo` VARCHAR(60),
-);
+-- Export dat nebyl vybrán.
 
+-- Exportování struktury pro tabulka herny_magazin.zaner
+CREATE TABLE IF NOT EXISTS `zaner` (
+  `zaner_id` int(11) NOT NULL AUTO_INCREMENT,
+  `typ_zanru` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`zaner_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE `Recenzie`(
-`id_recenzia`INT AUTO_INCREMENT,
-PRIMARY KEY(id_recenzia),
-`id_zaregistrovaneho_u`INT AUTO_INCREMENT,
-`id_Hry`INT AUTO_INCREMENT,
-`koment` TEXT
-  
-);
+-- Export dat nebyl vybrán.
 
+-- Exportování struktury pro tabulka herny_magazin.zaregistrovany_uzivatel
+CREATE TABLE IF NOT EXISTS `zaregistrovany_uzivatel` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE `spravca_info`(
-`id`INT PRIMARY KEY AUTO_INCREMENT,
-`realne_meno` VARCHAR,
-`realne_priezvisko` VARCHAR,
-`Adresa` TEXT,
-`email` VARCHAR,
-);
+-- Export dat nebyl vybrán.
+
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
 
