@@ -1,11 +1,30 @@
-
+/*vypíše typ zanru s typom id, ktore je väčšie ako 3*/
 SELECT  typ_zanru,zaner_id FROM zaner WHERE zaner_id>3 GROUP BY zaner_id;
+
+/*Vypíše emaily ktore majú v sebe @gmail.com*/
 SELECT email FROM zaregistrovany_uzivatel WHERE email LIKE'%@gmail.com%';
+
+/*Vypíše typ žánru s idčkom, ktoré je menšie ako 7 */
 SELECT * FROM zaner WHERE zaner_id <7 GROUP BY typ_zanru;
+
+/*Vyberie meno zaner a vyvojara z hier a pripoja sa do zanru*/
 SELECT meno,zaner,vyvojar FROM hry JOIN zaner ON id_vyvojar WHERE id_vyvojar=1 GROUP BY meno;
+
+/*Vypíše hry, ktoré majú žáner fps*/
 SELECT meno FROM hry WHERE zaner LIKE'%FPS%';
+
+/*Vypíše komenty, ktoré napísal uzivatel s cislom 1*/
 SELECT koment FROM recenzia WHERE id_zaregistrovaneho_u =1;
+
+/*Vypíše hry, ktoré majú v sebe češtinu*/
 SELECT meno FROM hry WHERE podpora_jazykov LIKE'%CZ%';
+
+/*zoradí hry podľa mena*/
 SELECT * FROM hry ORDER BY meno;
+
+/*Vypíše hry, ktoré stoja menej ako 20 euro*/
 SELECT * FROM hry WHERE cena <20;
+
+/*Vypíše nam tabulku, ktora sa bude volat kolko_love_potrebujem z hier a budú zoradene podla ceny*/
 SELECT cena COUNT(*)AS kolko_love potrebujem FROM hry GROUP BY cena;
+
