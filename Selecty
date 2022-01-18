@@ -1,0 +1,11 @@
+
+SELECT  typ_zanru,zaner_id FROM zaner WHERE zaner_id>3 GROUP BY zaner_id;
+SELECT email FROM zaregistrovany_uzivatel WHERE email LIKE'%@gmail.com%';
+SELECT * FROM zaner WHERE zaner_id <7 GROUP BY typ_zanru;
+SELECT meno,zaner,vyvojar FROM hry JOIN zaner ON id_vyvojar WHERE id_vyvojar=1 GROUP BY meno;
+SELECT meno FROM hry WHERE zaner LIKE'%FPS%';
+SELECT koment FROM recenzia WHERE id_zaregistrovaneho_u =1;
+SELECT meno FROM hry WHERE podpora_jazykov LIKE'%CZ%';
+SELECT * FROM hry ORDER BY meno;
+SELECT * FROM hry WHERE cena <20;
+SELECT cena COUNT(*)AS kolko_love potrebujem FROM hry GROUP BY cena;
