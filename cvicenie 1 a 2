@@ -1,0 +1,15 @@
+
+
+$a = 10;
+$b = 20;
+
+$obvod = (10 * 2) + (20 * 2);
+$obsah = 20*10;
+
+echo ("Obdelnik se stranemi o delkach 10 a 20 cm ma obsah " . $obsah . "cm2 a obvod " . $obvod . "cm.");
+
+echo ("</br>");
+
+$produkty = array($ab = 3500, 2800, 1280, 1920, 4320);
+$priemer = array_sum($produkty) / count($produkty);
+echo ("Treti produkt se od prumerne ceny odlisuje o " . $priemer - $produkty[2]);
